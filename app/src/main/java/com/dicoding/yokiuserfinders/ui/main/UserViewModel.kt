@@ -15,16 +15,16 @@ import retrofit2.http.Query
 class UserViewModel : ViewModel() {
     val listUsers = MutableLiveData<ArrayList<User>>()
 
-//    Fungsi Setter
-    fun setSearchUsers(query: String){
+    //    Fungsi Setter
+    fun setSearchUsers(query: String) {
         RetrofitClient.apiInstance
             .getSearchUsers(query)
-            .enqueue(object : Callback<UserResponse>{
+            .enqueue(object : Callback<UserResponse> {
                 override fun onResponse(
                     call: Call<UserResponse>,
                     response: Response<UserResponse>
                 ) {
-                    if (response.isSuccessful){
+                    if (response.isSuccessful) {
                         listUsers.postValue(response.body()?.items)
                     }
                 }
@@ -36,8 +36,8 @@ class UserViewModel : ViewModel() {
             })
     }
 
-//    Fungsi Getter
-    fun getSearchUsers(): LiveData<ArrayList<User>>{
+    //    Fungsi Getter
+    fun getSearchUsers(): LiveData<ArrayList<User>> {
         return listUsers
     }
 }
