@@ -3,13 +3,17 @@ package com.dicoding.yokiuserfinders.ui.main
 import android.content.Intent
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.dicoding.yokiuserfinders.R
 import com.dicoding.yokiuserfinders.data.model.User
 import com.dicoding.yokiuserfinders.databinding.ActivityMainBinding
 import com.dicoding.yokiuserfinders.ui.detail.DetailUserActivity
+import com.dicoding.yokiuserfinders.ui.favorite.FavoriteActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -22,6 +26,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        setTitle("Yoki Github User Finders")
+
         adapter = UserAdapter()
         adapter.notifyDataSetChanged()
 
@@ -29,6 +35,8 @@ class MainActivity : AppCompatActivity() {
             override fun onItemClicked(data: User) {
                 Intent(this@MainActivity, DetailUserActivity::class.java).also {
                     it.putExtra(DetailUserActivity.EXTRA_USERNAME, data.login)
+                    it.putExtra(DetailUserActivity.EXTRA_ID, data.id)
+                    it.putExtra(DetailUserActivity.EXTRA_URL, data.avatar_url)
                     startActivity(it)
                 }
             }
@@ -65,6 +73,15 @@ class MainActivity : AppCompatActivity() {
                 showLoading(false)
             }
         })
+
+        binding.apply {
+            btnFavorite.setOnClickListener {
+                var moveToFavorite = Intent(this@MainActivity, FavoriteActivity::class.java).also {
+                    startActivity(it)
+                }
+            }
+        }
+
     }
 
     //    Function Search User
@@ -86,4 +103,21 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.option_menu, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.favorite_menu -> {
+                Intent(this, FavoriteActivity::class.java).also {
+                    startActivity(it)
+                }
+            }
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
 }
