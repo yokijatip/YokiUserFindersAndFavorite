@@ -1,11 +1,11 @@
 package com.dicoding.yokiuserfinders.ui.favorite
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.dicoding.yokiuserfinders.R
 import com.dicoding.yokiuserfinders.data.local.FavoriteUser
 import com.dicoding.yokiuserfinders.data.model.User
 import com.dicoding.yokiuserfinders.databinding.ActivityFavoriteBinding
@@ -30,6 +30,7 @@ class FavoriteActivity : AppCompatActivity() {
         adapter.setOnItemClickCallback(object : UserAdapter.OnItemClickCallback {
             override fun onItemClicked(data: User) {
                 Intent(this@FavoriteActivity, DetailUserActivity::class.java).also {
+                    showLoading(true)
                     it.putExtra(DetailUserActivity.EXTRA_USERNAME, data.login)
                     it.putExtra(DetailUserActivity.EXTRA_ID, data.id)
                     it.putExtra(DetailUserActivity.EXTRA_URL, data.avatar_url)
@@ -46,9 +47,10 @@ class FavoriteActivity : AppCompatActivity() {
         }
 
         viewModel.getFavoriteUser()?.observe(this, {
-            if (it!=null) {
+            if (it != null) {
                 val list = mapList(it)
                 adapter.setList(list)
+                showLoading(false)
             }
         })
 
@@ -57,13 +59,24 @@ class FavoriteActivity : AppCompatActivity() {
     private fun mapList(users: List<FavoriteUser>): ArrayList<User> {
         val listUsers = ArrayList<User>()
         for (user in users) {
-            val userMapped = User (
+            val userMapped = User(
                 user.login,
                 user.id,
                 user.avatar_url
             )
             listUsers.add(userMapped)
         }
-        return  listUsers
+        return listUsers
     }
+
+    private fun showLoading(state: Boolean) {
+        binding.apply {
+            if (state) {
+                progressBar.visibility = View.VISIBLE
+            } else {
+                progressBar.visibility = View.GONE
+            }
+        }
+    }
+
 }

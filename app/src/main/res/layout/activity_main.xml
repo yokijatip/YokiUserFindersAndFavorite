@@ -45,14 +45,11 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_user"
         android:layout_width="410dp"
-        android:layout_height="538dp"
-        android:layout_marginTop="32dp"
+        android:layout_height="520dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout2"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ProgressBar
         android:id="@+id/progress_bar"
@@ -66,25 +63,28 @@
         android:visibility="gone"/>
 
     <Button
-        android:id="@+id/btn_tema"
-        android:layout_width="wrap_content"
+        android:id="@+id/btn_favorite"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:text="Ganti Tema"
-        app:layout_constraintBottom_toTopOf="@+id/rv_user"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/rounded_button"
+        android:text="Favorite User"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
 
-    <Button
-        android:id="@+id/btn_favorite"
+    <Switch
+        android:id="@+id/switch_theme"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="16dp"
-        android:text="Favorite User"
+        android:text="Dark mode"
         app:layout_constraintBottom_toTopOf="@+id/rv_user"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
-
+        app:layout_constraintEnd_toEndOf="@+id/btn_favorite"
+        app:layout_constraintStart_toStartOf="@+id/btn_favorite"
+        app:layout_constraintTop_toBottomOf="@+id/btn_favorite"
+        tools:ignore="TouchTargetSizeCheck" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

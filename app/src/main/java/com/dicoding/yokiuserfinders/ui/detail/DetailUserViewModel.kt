@@ -63,7 +63,7 @@ class DetailUserViewModel(application: Application) : AndroidViewModel(applicati
 
     suspend fun checkUser(id: Int) = userDao?.checkUser(id)
 
-    fun removeFromFavorite(id: Int){
+    fun removeFromFavorite(id: Int) {
         CoroutineScope(Dispatchers.IO).launch {
             userDao?.removeFromFavorite(id)
         }

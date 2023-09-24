@@ -6,11 +6,15 @@ import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.CompoundButton
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.dicoding.yokiuserfinders.R
+import com.dicoding.yokiuserfinders.data.model.MainViewModel
 import com.dicoding.yokiuserfinders.data.model.User
+import com.dicoding.yokiuserfinders.data.model.ViewModelFactory
 import com.dicoding.yokiuserfinders.databinding.ActivityMainBinding
 import com.dicoding.yokiuserfinders.ui.detail.DetailUserActivity
 import com.dicoding.yokiuserfinders.ui.favorite.FavoriteActivity
@@ -82,6 +86,32 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
+
+        binding.apply {
+
+            val pref = UserSetting.getInstance(application.dataStore)
+            val mainViewModel = ViewModelProvider(this@MainActivity, ViewModelFactory(pref)).get(
+                MainViewModel::class.java
+            )
+
+            mainViewModel.getThemeSettings()
+                .observe(this@MainActivity) { isDarkModeActive: Boolean ->
+                    if (isDarkModeActive) {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                        switchTheme.isChecked = true
+                    } else {
+                        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                        switchTheme.isChecked = false
+                    }
+                }
+
+            switchTheme.setOnCheckedChangeListener { _: CompoundButton?, isChecked: Boolean ->
+                mainViewModel.saveThemeSetting(isChecked)
+            }
+
+
+        }
+
     }
 
     //    Function Search User
@@ -110,7 +140,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId){
+        when (item.itemId) {
             R.id.favorite_menu -> {
                 Intent(this, FavoriteActivity::class.java).also {
                     startActivity(it)

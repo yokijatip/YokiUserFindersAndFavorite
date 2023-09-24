@@ -14,20 +14,21 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
 
     private var onItemClickCallback: OnItemClickCallback? = null
 
-    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
+    fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
     }
 
-//    Setter
-    fun setList(users: ArrayList<User>){
+    //    Setter
+    fun setList(users: ArrayList<User>) {
         list.clear()
         list.addAll(users)
         notifyDataSetChanged()
     }
 
-    inner class UserViewHolder(val binding : ItemUserBinding) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(user: User){
-            binding.root.setOnClickListener{
+    inner class UserViewHolder(val binding: ItemUserBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+        fun bind(user: User) {
+            binding.root.setOnClickListener {
                 onItemClickCallback?.onItemClicked(user)
             }
 
@@ -56,8 +57,8 @@ class UserAdapter : RecyclerView.Adapter<UserAdapter.UserViewHolder>() {
         return list.size
     }
 
-//    On Item Click Listener
-    interface OnItemClickCallback{
+    //    On Item Click Listener
+    interface OnItemClickCallback {
         fun onItemClicked(data: User)
     }
 

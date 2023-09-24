@@ -7,7 +7,7 @@ import com.dicoding.yokiuserfinders.data.local.FavoriteUser
 import com.dicoding.yokiuserfinders.data.local.FavoriteUserDao
 import com.dicoding.yokiuserfinders.data.local.UserDatabase
 
-class FavoriteViewModel(application: Application): AndroidViewModel(application) {
+class FavoriteViewModel(application: Application) : AndroidViewModel(application) {
 
     private var userDao: FavoriteUserDao?
     private var userDb: UserDatabase?

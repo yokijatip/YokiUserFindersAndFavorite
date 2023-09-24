@@ -1,15 +1,12 @@
 package com.dicoding.yokiuserfinders.ui.detail
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
-import com.dicoding.yokiuserfinders.R
 import com.dicoding.yokiuserfinders.databinding.ActivityDetailUserBinding
-import com.dicoding.yokiuserfinders.ui.main.UserViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -45,7 +42,7 @@ class DetailUserActivity : AppCompatActivity() {
             showLoading(true)
         }
         detailViewModel.getUserDetail().observe(this, {
-            if (it != null){
+            if (it != null) {
                 binding.apply {
                     tvName.text = it.name
                     tvUsername.text = it.login
@@ -65,12 +62,12 @@ class DetailUserActivity : AppCompatActivity() {
         var _isChecked = false
         CoroutineScope(Dispatchers.IO).launch {
             val count = detailViewModel.checkUser(id)
-            withContext(Dispatchers.Main){
+            withContext(Dispatchers.Main) {
                 if (count != null) {
-                    if (count > 0){
+                    if (count > 0) {
                         binding.toggleFavorite.isChecked = true
                         _isChecked = true
-                    }else{
+                    } else {
                         binding.toggleFavorite.isChecked = false
                         _isChecked = false
                     }

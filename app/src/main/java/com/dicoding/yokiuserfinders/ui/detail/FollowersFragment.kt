@@ -9,9 +9,9 @@ import com.dicoding.yokiuserfinders.R
 import com.dicoding.yokiuserfinders.databinding.FragmentFollowBinding
 import com.dicoding.yokiuserfinders.ui.main.UserAdapter
 
-class FollowersFragment: Fragment(R.layout.fragment_follow) {
+class FollowersFragment : Fragment(R.layout.fragment_follow) {
 
-    private var _binding : FragmentFollowBinding? = null
+    private var _binding: FragmentFollowBinding? = null
     private val binding get() = _binding!!
     private lateinit var followersViewModel: FollowersViewModel
     private lateinit var adapter: UserAdapter
@@ -32,10 +32,13 @@ class FollowersFragment: Fragment(R.layout.fragment_follow) {
         }
 
         showLoading(true)
-        followersViewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(FollowersViewModel::class.java)
+        followersViewModel = ViewModelProvider(
+            this,
+            ViewModelProvider.NewInstanceFactory()
+        ).get(FollowersViewModel::class.java)
         followersViewModel.setListFollowers(username)
         followersViewModel.getListFollowers().observe(viewLifecycleOwner, {
-            if (it!=null){
+            if (it != null) {
                 adapter.setList(it)
                 showLoading(false)
             }
@@ -47,11 +50,11 @@ class FollowersFragment: Fragment(R.layout.fragment_follow) {
         _binding = null
     }
 
-    private fun showLoading(state: Boolean){
+    private fun showLoading(state: Boolean) {
         binding.apply {
-            if(state) {
+            if (state) {
                 progressBar.visibility = View.VISIBLE
-            }else{
+            } else {
                 progressBar.visibility = View.GONE
             }
         }
