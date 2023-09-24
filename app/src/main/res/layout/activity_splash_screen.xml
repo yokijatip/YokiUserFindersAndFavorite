@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.detail.SplashScreenActivity">
+
+    <TextView
+        android:id="@+id/tvSplashScreenTitle"
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:layout_marginTop="160dp"
+
+        android:fontFamily="@font/jost_bold"
+        android:text="@string/tvSplashScreenTitle"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/ivSplashScreen"
+        android:layout_width="260dp"
+        android:layout_height="260dp"
+        android:layout_marginTop="32dp"
+        android:src="@drawable/ic_launcher_foreground"
+        app:layout_constraintEnd_toEndOf="@+id/tvSplashScreenTitle"
+        app:layout_constraintStart_toStartOf="@+id/tvSplashScreenTitle"
+        app:layout_constraintTop_toBottomOf="@+id/tvSplashScreenTitle" />
+
+    <TextView
+        android:id="@+id/tvSplashScreenHeadline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="@string/tvSplashScreenHeader"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivSplashScreen" />
+
+    <TextView
+        android:id="@+id/tvSplashScreenDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="@string/tvSplashScreenDescription"
+
+
+        android:textColor="#7D7D7D"
+        app:layout_constraintEnd_toEndOf="@+id/tvSplashScreenHeadline"
+        app:layout_constraintStart_toStartOf="@+id/tvSplashScreenHeadline"
+        app:layout_constraintTop_toBottomOf="@+id/tvSplashScreenHeadline" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,6 +15,15 @@
         android:theme="@style/AppTheme.YokiUserFinders"
         tools:targetApi="31">
         <activity
+            android:name=".ui.detail.SplashScreenActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
             android:name=".ui.favorite.FavoriteActivity"
             android:exported="false" />
         <activity
@@ -22,12 +31,7 @@
             android:exported="false" />
         <activity
             android:name=".ui.main.MainActivity"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            android:exported="false">
         </activity>
     </application>
 

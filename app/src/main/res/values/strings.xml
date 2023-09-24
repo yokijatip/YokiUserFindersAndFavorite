@@ -6,4 +6,8 @@
 
     <string name="tab_1">Followers</string>
     <string name="tab_2">Following</string>
+
+    <string name="tvSplashScreenTitle">Yoki User Finders</string>
+    <string name="tvSplashScreenHeader">Menggunakan Retrofit</string>
+    <string name="tvSplashScreenDescription">Icon love di ganti dengan Icon Bookmark</string>
 </resources>
